@@ -1,3 +1,7 @@
-<p>
-  products works!
-</p>
+<div *ngFor="let product of (products | async)">
+
+  <span>{{product.name}}</span>
+  
+  <img src="{{product.imgUrl}}" alt="" height="300" width="300">
+
+</div>
