@@ -3,9 +3,13 @@
     padding: 0;
     margin:0;
 }
-body{
-    font-family: sans-serif;
+.container{
+    margin:20px;
 }
+// body{
+//     font-family: sans-serif;
+//     overflow: hidden;
+// }
 
 nav{
     background: #222;
@@ -18,10 +22,6 @@ ul{
 a{
     color: white;
     text-decoration: none;
-}
-
-a:hover{
-    text-decoration: underline
 }
 
 .menu li{
@@ -53,4 +53,8 @@ a:hover{
     .menu{
         justify-content: center;
     }
+}
+
+.active-link{
+    color:yellow;
 }
