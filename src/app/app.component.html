@@ -1,12 +1,20 @@
-<div class="container ">
-  <nav>
+<div>
+  <!-- <nav>
     <ul class="menu">
       <li class="item"><a routerLink="/home" routerLinkActive="active-link">Home</a></li>
       <li class="item"><a  routerLink="/products" routerLinkActive="active-link" >Products</a></li>
+      <li class="item"><a>Login</a></li>
     </ul>
-  </nav>
+  </nav> -->
+
 </div>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Product Mart</span>
+    <a mat-button routerLink="/home" routerLinkActive="active-link">Home</a>
+    <a mat-button routerLink="/products" routerLinkActive="active-link">Products</a>
+    <a mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
-
-
