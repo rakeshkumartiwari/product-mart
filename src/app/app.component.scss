@@ -6,10 +6,7 @@
 .container{
     margin:20px;
 }
-// body{
-//     font-family: sans-serif;
-//     overflow: hidden;
-// }
+
 
 nav{
     background: #222;
@@ -57,4 +54,13 @@ a{
 
 .active-link{
     color:yellow;
+}
+
+.logo {
+    background-image: Url("assets/images/logo2.jpg");
+    height:50px;
+    width: 50px;
+    background-size: contain;
+    background-image: no-repeat;
+    border-radius: 50%;
 }

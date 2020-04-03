@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'pm-register',
@@ -7,13 +9,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  firstName: string;
-  lastName: string;
-  constructor(private router: Router) { }
+  userGroup = new FormGroup({
+    fullName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    repeatPassword: new FormControl('', [Validators.required])
+  });
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
   register() {
-    this.router.navigate(['/login']);
+    const user = this.userGroup.getRawValue();
+    this.authService
+      .register(user)
+      .subscribe(() => this.router.navigate(['/login']));
+    console.log(this.userGroup);
+
+  }
+
+  get fullName() {
+    return this.userGroup.get('fullName');
   }
 }

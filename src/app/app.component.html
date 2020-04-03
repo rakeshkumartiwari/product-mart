@@ -1,19 +1,14 @@
-<div>
-  <!-- <nav>
-    <ul class="menu">
-      <li class="item"><a routerLink="/home" routerLinkActive="active-link">Home</a></li>
-      <li class="item"><a  routerLink="/products" routerLinkActive="active-link" >Products</a></li>
-      <li class="item"><a>Login</a></li>
-    </ul>
-  </nav> -->
-
-</div>
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Product Mart</span>
+    <a href="" class="logo"></a>
     <a mat-button routerLink="/home" routerLinkActive="active-link">Home</a>
     <a mat-button routerLink="/products" routerLinkActive="active-link">Products</a>
-    <a mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
+    <a mat-button *ngIf="!user" routerLink="/login" routerLinkActive="active-link">Login</a>
+    <div *ngIf="user">
+        <a mat-button>
+          <mat-icon>account_circle</mat-icon>{{user.fullName}}
+        </a>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
