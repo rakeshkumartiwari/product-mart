@@ -3,11 +3,12 @@
     <a href="" class="logo"></a>
     <a mat-button routerLink="/home" routerLinkActive="active-link">Home</a>
     <a mat-button routerLink="/products" routerLinkActive="active-link">Products</a>
-    <a mat-button *ngIf="!user" routerLink="/login" routerLinkActive="active-link">Login</a>
-    <div *ngIf="user">
-        <a mat-button>
-          <mat-icon>account_circle</mat-icon>{{user.fullName}}
-        </a>
+    <div class="user-section">
+      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+      <mat-menu #menu="matMenu">
+          <a mat-button routerLink="/login" style="color: black;" *ngIf="!user" routerLinkActive="active-link">Login</a>
+          <a mat-button (click)="logout()" style="color: black;" *ngIf="user" routerLinkActive="active-link">Logout</a>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

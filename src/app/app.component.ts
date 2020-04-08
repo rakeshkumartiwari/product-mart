@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { User } from './User';
@@ -10,11 +10,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'product-mart';
   user: User;
   userSubscription: Subscription;
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
     this.userSubscription = this.authService.user.subscribe(user => {
       this.user = user;
     });

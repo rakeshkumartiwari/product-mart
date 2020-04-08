@@ -9,15 +9,16 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  userGroup = new FormGroup({
-    fullName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    repeatPassword: new FormControl('', [Validators.required])
-  });
+  userGroup: FormGroup;
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    this.userGroup = new FormGroup({
+      fullName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      repeatPassword: new FormControl('', [Validators.required])
+    });
   }
   register() {
     const user = this.userGroup.getRawValue();
@@ -31,4 +32,9 @@ export class RegisterComponent implements OnInit {
   get fullName() {
     return this.userGroup.get('fullName');
   }
+
+  get password() {
+    return this.userGroup.get('password');
+  }
+
 }

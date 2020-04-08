@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(helmet());
 
 // allow cors
-app.use(cors());
+ app.use(cors());
 
 //api router 
 app.use('/api/', routes);
