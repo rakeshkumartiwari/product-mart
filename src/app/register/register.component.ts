@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
+
+function checkPassword(control: AbstractControl): { [key: string]: boolean } | null {
+  if (control && control.value !== '') {
+    const password = control.root.get('password');
+    if (password.value !== control.value) {
+      return { match: true };
+    }
+  }
+  return null;
+}
 
 @Component({
   selector: 'pm-register',
@@ -10,14 +20,14 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
   userGroup: FormGroup;
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.userGroup = new FormGroup({
-      fullName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      repeatPassword: new FormControl('', [Validators.required])
+    this.userGroup = this.fb.group({
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
+      password: ['', [Validators.required]],
+      repeatPassword: ['', [Validators.required, checkPassword]]
     });
   }
   register() {
@@ -35,6 +45,14 @@ export class RegisterComponent implements OnInit {
 
   get password() {
     return this.userGroup.get('password');
+  }
+
+  get repeatPassword() {
+    return this.userGroup.get('repeatPassword');
+  }
+
+  get email() {
+    return this.userGroup.get('email');
   }
 
 }

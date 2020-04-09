@@ -1,48 +1,51 @@
 <mat-card class="rgister-card">
-    <mat-card-header>
-      <mat-card-title>Register</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="userGroup">
-        <table class="full-width">
-          <tr>
-            <td>
-              <mat-form-field class="full-width">
-                <input matInput type="text" placeholder="Enter Full Name" formControlName="fullName">
-              </mat-form-field>
-              <mat-error *ngIf="fullName.invalid && fullName.errors.fullName">
-                Full name is required.
-              </mat-error>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="full-width">
-                <input matInput type="text" placeholder="Enter Email" formControlName="email">
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="full-width">
-                <input matInput type="password" placeholder="Enter Password" formControlName="password">
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field class="full-width">
-                <input matInput type="password" placeholder="Repeat Password" formControlName="repeatPassword">
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="register()" [disabled]="!userGroup.valid">Register</button>
-        </mat-card-actions>
-        <span>
-          notmatch
-        </span>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="userGroup">
+      <table class="full-width">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="Enter Full Name" formControlName="fullName">
+            </mat-form-field>
+            <mat-error *ngIf="fullName.invalid && fullName.errors.fullName">
+              Full name is required.
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput type="text" placeholder="Enter Email" formControlName="email">
+            </mat-form-field>
+            <mat-error *ngIf="email.errors?.pattern">
+              Email is not valid.
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="Enter Password" formControlName="password">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput type="password" placeholder="Repeat Password" formControlName="repeatPassword">
+            </mat-form-field>
+            <mat-error *ngIf="repeatPassword.errors?.match">
+              Password is no matched.
+            </mat-error>
+          </td>
+        </tr>
+      </table>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="register()" [disabled]="!userGroup.valid">Register</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
